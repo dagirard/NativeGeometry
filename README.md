@@ -4,7 +4,7 @@ NativeGeometry
 NativeGeometry is an enhanced geometry manager for LiveCode.
 
 NativeGeometry allows you to create quickly a complex and localizable graphical user interface, 
-that is as fast as your own script and with the ease of use of the built-in Revolution Geometry manager!
+that is as fast as your own script and with the ease of use of the built-in LiveCode Geometry manager!
 
 # How to get started?
 

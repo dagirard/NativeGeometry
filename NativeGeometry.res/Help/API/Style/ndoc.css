@@ -1,0 +1,648 @@
+/* ************************************************
+* NativeSoft NativeDoc CSS StyleSheet file. *******
+* *************************************************
+* Version: 3.0
+* ************************************************
+* Default StyleSheet file for NativeDoc 3.0 code documentation
+* tool.
+*
+* You are free to re-use this file in order to design your own template.
+* *************************************************
+* (c) 2007-2012 NativeSoft. All rights reserved worldwide.
+* ************************************************* */
+
+/* ****************************************************
+* General properties. ********************************
+* **************************************************** */
+
+/* Common block properties */
+
+html{
+
+    height: 100%;
+    width: 100%;
+}
+
+body
+{
+    font-family: "Segoe UI", "Lucida Grande", Verdana, 'MS Sans Serif', Geneva, sans-serif;
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+#mainblock
+{
+    width: 100%;
+    background-color:#FFFFFF;
+    /*min-width: 1024px;*/
+    /* Minimum size of the documentation */
+    /*width:expression(document.body.clientWidth < 1000 ? "1000px" : "auto" );*/
+    overflow: hidden;
+}
+
+/* Common style properties */
+
+a
+{
+    color: #0033CC;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: #FF6600;
+}
+
+img
+{
+    border:none;
+}
+
+/* ****************************************************
+* Header properties. *********************************
+* **************************************************** */
+
+#block-header{
+    background-color: #002C84;
+    color: #FFFFFF;
+    font-size: 0.85em; /* Equivalent to 0.7 em because body has 0.8em*/
+    padding: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    background: url("Banner_repeat.png") bottom left repeat-x;
+    height: 117px;
+}
+
+#block-header-backgroundimg{
+    margin: 0px;
+    padding: 0px;
+    background: url("Banner.png") bottom left no-repeat;
+    height: 117px;
+}
+
+#block-logo{
+    margin: 0px;
+    padding: 0px;
+    /* For ie <= 6, the logo is incrusted inside the banner.
+     * If you do not want to support ie6 and its problems, you can
+     * use the image "Logo.png" to be displayed as logo.
+     * Simply uncomment the next line. */
+    background-image: url("Logo.png");
+    
+    background-repeat: no-repeat;
+    background-position: top left;
+    height: 70px;
+}
+
+#block-header a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#block-header a:hover{
+    text-decoration: underline;
+}
+
+#block-header .left
+{
+    float: left;
+}
+
+#block-header .right
+{
+    float: right;
+}
+
+#block-header p{
+    display: block;
+    padding: 0px;
+    padding-left: 10px;
+    margin: 0px;
+    font-size: 1.4em;
+    color: #FFFFFF;
+    height: 23px;
+}
+
+#block-header ul#tabnav {
+    list-style-type: none;
+    padding-bottom: 24px;
+    padding-left: 20px;
+    margin: 0;
+}
+
+#block-header ul#tabnav li {
+    float: left;
+    height: 21px;
+    /*background-color: #ccc;*/
+    margin: 2px 2px 0 2px;
+    border: 1px solid #C0C0C0;
+    border-bottom-style: none;
+}
+
+#block-header ul#tabnav li.active {
+    border-bottom: 1px solid #fff;
+    background-color: #fff;
+}
+
+#block-header #tabnav a {
+    float: left;
+    display: block;
+    color: #DCDCDC;
+    text-decoration: none;
+    padding: 4px;
+    width: 80px;
+    text-align: center;
+}
+
+#block-header #tabnav a:hover {
+    text-decoration: underline;
+}
+
+#block-header ul#tabnav li.active a {
+    color: #323232;
+}
+
+.block-print {
+    display: block;
+    float: right;
+    background: url('print.png') right no-repeat;
+    height: 22px;
+    padding-right: 28px;
+    margin-right: 4px;
+    line-height: 22px;
+    min-width: 22px;
+}
+
+.block-mail {
+    display: block;
+    float: right;
+    background: url('mail.png') right no-repeat;
+    height: 22px;
+    padding-right: 28px;
+    margin-right: 4px;
+    line-height: 22px;
+    min-width: 22px;
+}
+
+.block-print-icon {
+    background: url('print.png') right no-repeat;
+    height: 22px;
+    padding-right: 28px;
+    margin-left: 10px;
+    min-width: 22px;
+}
+
+
+/* ****************************************************
+* Tree properties. ***********************************
+* **************************************************** */
+.jsTree{
+    padding: 0px;
+    margin: 0px;
+    overflow: auto;
+    visibility: hidden;
+}
+
+/* The following code is only for ie6, as other browsers use jsTree */
+#jsTree ul{
+    list-style-type: none;
+    margin: 0px;
+    margin-left: 15px;
+    padding: 0px;
+}
+
+#Splitter {
+    margin: 2px;
+    padding: 0px;
+}
+
+#Splitter .vsplitbar {
+    width: 3px;
+    background: #DCDCDC url(vgrabber.gif) no-repeat center;
+}
+#Splitter .vsplitbar.active {
+    background: #C0C0C0 url(vgrabber.gif) no-repeat center;
+}
+
+/* ****************************************************
+* Content block. *************************************
+* **************************************************** */
+
+#block-body{
+    word-wrap: break-word;
+    overflow: auto;
+    font-size: 1.0em;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+#block-body iframe{
+    border: none 0px;
+}
+
+#block-body h1{
+    clear: both;
+    font-size: 200%;
+    padding: 2px 10px 2px 10px;
+    margin: 2px;
+    border-top: solid 1px #C0C0C0;
+    border-bottom: solid 1px #C0C0C0;
+}
+
+#block-body h3{
+    font-size: 120%;
+}
+
+#block-body .title{
+    clear: both;
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 2px 2px 2px 15px;
+    margin: 2px 2px 2px 8px;
+    background: url('hide.png') left center no-repeat;
+    color: #000000;
+    text-decoration: none;
+    cursor: default;
+}
+
+#block-body .hidden{
+    background: url('show.png') left center no-repeat;
+}
+
+#block-body p{
+    margin: 8px 0px 4px 10px;
+}
+
+#block-body div .code{
+	font-family: 'Consolas', 'Lucida Console', Monaco, monospace;
+	font-size: 1.0em;
+    margin: 10px 20px 10px 20px;
+    padding: 5px;
+    background-color: #DDDDDD;
+    border: solid 1px #C0C0C0;
+}
+
+#block-body pre{
+	font-family: 'Consolas', 'Lucida Console', Monaco, monospace;
+    font-size: 1.0em;
+    margin: 10px 20px 10px 20px;
+    padding: 5px;
+    background-color: #DDDDDD;
+    border: solid 1px #C0C0C0;
+	line-height: 1.0em;
+}
+
+#block-body .tag_block{
+    /*padding: 10px 20px 10px 20px;*/
+    padding: 0px;
+    margin: 10px 20px 10px 20px;
+}
+
+#block-body .tag_block p{
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
+
+#block-body table{
+    border: solid 1px #C0C0C0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#block-body th {
+    background: #CCCCCC;
+    text-align: left;
+    color: #00008A;
+    line-height: 16px;
+    padding: 2px;
+    border: solid 1px #C0C0C0;
+}
+
+#block-body table td{
+    padding: 4px 12px 4px 4px;
+    border: solid 1px #C0C0C0;
+}
+
+#block-body table .table_param_firstcol{
+    width: 32px;
+}
+
+#block-body table .table_error_firstcol{
+    width: 20px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#block-body .syntax{
+    background-color: #D0D0D0;
+}
+
+#block-body #tags_members table{
+    background-color: #FFFFFF;
+}
+
+#block-body #tags_members a{
+    text-decoration: none;
+}
+
+
+/* ******************* Navigator ******************* */
+
+#block-body #map{
+    list-style-type: none;
+    margin: 0px;
+    padding: 2px;
+}
+
+#block-body ul#map li{
+    float: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+#block-body #map a {
+    float: left;
+    display: block;
+    text-decoration: none;
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+    height: 18px;
+    line-height: 18px;
+}
+
+#block-body #map .rightarrow {
+    margin-left: 6px;
+    margin-right: 6px;
+    vertical-align: top;
+    display: inline;
+    line-height: 16px;
+}
+
+#block-body #map .notlast {
+    background: url('arrow.gif') no-repeat right;
+    padding-right: 17px;
+}
+
+/* ******************* Icons ******************* */
+
+.haveicon{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    line-height: 16px;
+}
+
+.icon{
+    display: inline;
+    vertical-align: top;
+}
+
+.icon_text{
+    margin-right: 4px;
+    display: inline;
+    vertical-align: top;
+}
+
+.external{
+    background: url('Icons/external.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.library{
+    background: url('Icons/library.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.function{
+    background: url('Icons/function.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.function_private{
+    background: url('Icons/function_private.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.command{
+    background: url('Icons/handler.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.command_private{
+    background: url('Icons/handler_private.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.on{
+    background: url('Icons/on.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.on_private{
+    background: url('Icons/handler_private.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.getprop{
+    background: url('Icons/getprop.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.getprop_private{
+    background: url('Icons/getprop_private.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.setprop{
+    background: url('Icons/setprop.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.setprop_private{
+    background: url('Icons/setprop_private.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.local{
+    background: url('Icons/local.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.global{
+    background: url('Icons/global.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.constant{
+    background: url('Icons/constant.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.stack{
+    background: url('Icons/stack.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.substack{
+    background: url('Icons/substack.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.card{
+    background: url('Icons/card.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.button{
+    background: url('Icons/button.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.field{
+    background: url('Icons/field.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.group{
+    background: url('Icons/group.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.scrollbar{
+    background: url('Icons/scrollbar.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.image{
+    background: url('Icons/scrollbar.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.player{
+    background: url('Icons/scrollbar.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.package{
+    background: url('Icons/package.png') left no-repeat;
+    padding-left: 20px;
+    line-height: 18px;
+}
+
+.param_none{
+    float: left;
+    margin: 0px;
+    width: 16px;
+    height: 16px;
+    line-height: 18px;
+    background: url('Icons/param_none.png') left no-repeat;
+}
+
+.param_in{
+    float: left;
+    margin: 0px;
+    background: url('Icons/param_in.png') left no-repeat;
+    width: 16px;
+    height: 16px;
+    line-height: 18px;
+}
+
+.param_out{
+    float: left;
+    margin: 0px;
+    background: url('Icons/param_out.png') left no-repeat;
+    width: 16px;
+    height: 16px;
+    line-height: 18px;
+}
+
+.param_in_out{
+    float: left;
+    margin: 0px;
+    background: url('Icons/param_in_out.png') left no-repeat;
+    width: 26px;
+    height: 16px;
+    line-height: 18px;
+}
+
+.param_optional{
+    float: left;
+    margin: 0px;
+    width: 16px;
+    height: 16px;
+    line-height: 18px;
+    background: url('Icons/param_optional.png') left no-repeat;
+}
+
+.error{
+    float: left;
+    margin: 0px;
+    width: 20px;
+    height: 16px;
+    line-height: 18px;
+    background: url('Icons/error.png') center no-repeat;
+}
+
+.throw{
+    float: left;
+    margin: 0px;
+    width: 20px;
+    height: 16px;
+    line-height: 18px;
+    background: url('Icons/error.png') center no-repeat;
+}
+
+/* ****************************************************
+* Footer block. *************************************
+* **************************************************** */
+
+#block-footer{
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    background: white;
+    font-size: 0.85em;
+    padding-left: 4px;
+    padding-right: 4px;
+    clear: both;
+}
+
+#block-footer p{
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 0px;
+}
+

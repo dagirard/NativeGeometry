@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+
+<body>
+<h2>  Set up your application to use NativeGeometry</h2>
+<br>
+<p>
+NativeGeometry has been designed to be the less intrusive inside your application, to make your application
+using NativeGeometry you have just to place the following script inside your main application stack.<br>
+<br>
+----------------------------------------------<br>
+on startup<br>
+   -- Opening NativeGeometry<br>
+   open invisible stack "NativeGeometry"<br>
+   <br>
+   -- On iOS, setting that the application has to use all pixel of the devices<br>
+   if the platform is "iphone" then<br>
+      iphoneUseDeviceResolution true, true<br>
+   end if<br>
+   <br>
+   -- Setting the scale value for this platform<br>
+   ng_setConfig "scale", ng_getSystemScale()<br>
+   <br>
+   pass startup<br>
+end startup<br>
+<br>
+on savingStandalone<br>
+   -- Embedding NativeGeometry<br>
+   set the mainstack of stack "NativeGeometry" to "My Mainstack"<br>
+end savingStandalone<br>
+<br>
+on savingMobileStandalone<br>
+   -- Embedding NativeGeometry in Mobile app<br>
+   set the mainstack of stack "NativeGeometry" to "My Mainstack"<br>
+   save me -- Specified in android livecode note<br>
+end savingMobileStandalone<br>
+<br>
+-- Optional<br>
+on preopenstack<br>
+   -- Setting the font for this platform.<br>
+   ng_setStackFont ng_getSystemFont(), (the name of this stack)<br>
+   pass preopenstack<br>
+end preopenstack<br>
+----------------------------------------------<br>
+<br>
+When the application will be "compiled", the NativeGeometry library will be embedded inside the mainstack.
+At the startup of the application, NativeGeometry library is opened and is ready to be used.<br>
+<br>
+More information about this in the NativeGeometry API, <a href="${HELP}API/Documents/stack_NativeGeometry.htm">click here to open the API.</a>
+<br>
+</p>
+<h2>  Pass your resizeStack and preOpenCard handlers!</h2>
+<br>
+<p>
+NativeGeometry is automatically executed after the resizeStack and the preOpenCard handlers.<br>
+If you do not want to run manually NativeGeometry <b>do not forget</b> to place "<u>pass resizeStack</u>" and "<u>pass preOpenCard</u>" at the end of those handlers.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Any proprietary names mentioned within this documentation are and shall remain vested in their respective owner(s).
+
+</p>
+
+</body>
+</html>
+
+
+
+
+
+

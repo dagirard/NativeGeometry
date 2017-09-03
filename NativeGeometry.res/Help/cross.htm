@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+
+<body>
+<h2>  Good way to use NativeGeometry</h2>
+<br>
+<p>
+NativeGeometry has been designed to be a cross platform/localizable/dpi aware geometry manager, enabling developpers to develop quickly a good
+looking application for all platforms.<br>
+</p>
+<h3>Use paddings!</h3>
+<br>
+<p>
+NativeGeometry enables you to set distance of objects with the virtual padding rect. To makes your application good looking on all
+platform simply prefer using (left|top|right|bottom)padding than setting a fixed size in pixel.<br>
+</p>
+<h3>Set geometry relations for all objects</h3>
+<br>
+<p>
+When you will localize or change the DPI of your application, all objects have to changes their size.<br>
+<br>
+To prevent object overlapping, simply use NativeGeometry and set strictly the distance between the two objects.
+<br>
+</p>
+<h3>Update automatically fonts of your application</h3>
+<br>
+<p>
+NativeGeometry provides an useful command that enable you to update all fonts of your stack
+in only one line.<br>
+This allow your application to have using the right font on each platform.<br>
+<br>
+The easiest way to update all font is to place inside your mainstacks the following script:<br>
+<br>
+----------------------------------------------<br>
+on preopenstack<br>
+   -- Setting the stack font to the system font.<br>
+   ng_setStackFont ng_getSystemFont(), the long id of this stack<br>
+   pass preopenstack<br>
+end preopenstack<br>
+----------------------------------------------<br>
+And do not forget inside substacks to place "pass preopenstack"!<br>
+<br>
+More information about the <a href="${HELP}API/Documents/stack_NativeGeometry_command_ng_setStackFont.htm">ng_setStackFont</a> command and <a href="${HELP}API/Documents/stack_NativeGeometry_function_ng_getSystemFont.htm">ng_getSystemFont()</a> are available inside the <a>NativeGeometry API</a>
+documentation.<br>
+</p>
+<h3>Use scaling instead of setting bigger font!</h3>
+<br>
+<p>
+NativeGeometry 3 added a scaling feature, all objects handled by NativeGeometry can be scaled up/down with a simple command!<br>
+<br>
+So, instead of using the <a href="${HELP}API/Documents/stack_NativeGeometry_command_ng_setStackFont.htm">ng_setStackFont</a> command or a manual script to update font size, simply set the general scalling!<br>
+<br>
+Example:<br>
+----------------------------------------------<br>
+-- Setting the scale value for this platform<br>
+ng_setConfig "scale", ng_getSystemScale()<br>
+----------------------------------------------<br>
+<br>
+The function <a href="${HELP}API/Documents/stack_NativeGeometry_function_ng_getSystemScale.htm">ng_getSystemScale()</a> returns the scaling factor to use on this platform.<br>
+</p>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Any proprietary names mentioned within this documentation are and shall remain vested in their respective owner(s).
+
+</p>
+
+</body>
+</html>
+
+
+
+
+
+

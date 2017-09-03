@@ -1,0 +1,146 @@
+-- --------------------------------------------------------------------------
+-- NativeSoft -- NativeGeometry                                               --
+-- --------------------------------------------------------------------------
+-- Version: >= 3.0
+-- --------------------------------------------------------------------------
+Document: NativeGeometry Database format.
+-----------------------------------------------------------------------------
+
+NativeGeometry Database is based on the powerful RunRev multi-dimenssional array.
+
+NativeGeometry 2.0 has an exploded way to store geometry relation. This explosion makes
+far easier everything.
+
+-----------------------------------------------------------------------------
+--> Where NativeGeometry databases are located?
+
+NativeGeometry databases are located inside the "NativeGeometry" custom property
+of cards and stacks.
+
+If a cards uses NativeGeometry, then it will have the "NativeGeometry" custom property,
+with all objects that have to be resized etc...
+
+The advantage is that when the user saves it's stack, he saves the geometry too. ;)
+
+-----------------------------------------------------------------------------
+--> How NativeGeometry operate on stack opening?
+
+NativeGeometry does not do anything, it operates only in card openings.
+
+-----------------------------------------------------------------------------
+--> How NativeGeometry operate on card opening?
+
+NativeGeometry applies the stack geometry then the card geometry.
+
+Stack > Card > Display.
+
+-----------------------------------------------------------------------------
+--> How data are stored inside the custom property?
+
+The implementation is straighforward for speed issue.
+
+["NativeGeometry"]["version"] -- Version of NativeGeometry
+["NativeGeometry"]["order"]   -- Object operation order
+
+["NativeGeometry"]["object"][<object>]["enabled"]   -- Does the object must be resized.
+["NativeGeometry"]["object"][<object>]["relations"] -- Object geometry relations.
+["NativeGeometry"]["object"][<object>]["relations_compiled"] -- Object geometry relations for the engine. (Pre-compiled to be faster)
+
+["NativeGeometry"]["object"][<object>]["no_auto_resize"] -- Set to true to disable NativeGeometry auto resize.
+["NativeGeometry"]["object"][<object>]["min_width"]      -- Minimal width that the object must have. This is the top most important property.
+["NativeGeometry"]["object"][<object>]["min_height"]     -- Minimal height that the object must have. This is the top most important property.
+["NativeGeometry"]["object"][<object>]["max_width"]      -- Maximal width that the object must have. This is the top most important property.
+["NativeGeometry"]["object"][<object>]["max_height"]     -- Maximal height that the object must have. This is the top most important property.
+["NativeGeometry"]["object"][<object>]["scale"]          -- Scale factor for this object. Format: 100 means 100%.
+
+-> Compiled relation internals:
+
+["NativeGeometry"]["object"][<object>]["relations_compiled"]["order"] -- Relation internal order.
+["NativeGeometry"]["object"][<object>]["relations_compiled"]["dependencies"] -- Relation object dependencies.
+["NativeGeometry"]["object"][<object>]["relations_compiled"][<id>]["type"] -- Relation type.
+["NativeGeometry"]["object"][<object>]["relations_compiled"][<id>]["value"] -- Relation value to get.
+["NativeGeometry"]["object"][<object>]["relations_compiled"][<id>]["conditional"] -- Relation execution condition. (The relation will not be effected if the condition is not true).
+
+["NativeGeometry"]["object"][<object>]["compiled_icon_size"] -- Contains the maximum icon size of the object. It is the compiler that determine that.
+["NativeGeometry"]["object"][<object>]["compiled_icon_list"] -- Contains the icons used by the compiler to determine the maximum icon size of the object.
+
+-----------------------------------------------------------------------------
+--> How does the ["order"] works?
+
+The ["order"] contains the order to resize objects, it contains keys of objects to resize.
+One object key by line. The object key is used to have a direct access to geometry relation.
+
+: ["NativeGeometry"]["object"][<object>]
+
+
+-----------------------------------------------------------------------------
+--> What is the format of object names?
+
+Object names does not contains the name of the card, nor the name of the stack where they are on!
+
+eg. button id 1005
+
+This enable the card/stack to be renamed without having to update anything with NativeGeometry.
+
+-----------------------------------------------------------------------------
+--> How geometry relations are ordered?
+
+NativeGeometry 2.0 added geometry relations orderings, relation are ordered very easily,
+each relation have an unique ID, (that start from 1000 to ... a huge number ;). Then they are stored inside
+the ["order"] keys.
+
+["NativeGeometry"]["object"][<object>]["relations"]["order"] -- Not used for 2.0. Maybe can let the user choose himself geometry order.
+["NativeGeometry"]["object"][<object>]["relations_compiled"]["order"]
+
+The order works exatcly than the object order.
+
+The ["order"] contains the order to resize objects, it contains keys of objects to resize.
+One object key by line. The object key is used to have a direct access to geometry relation.
+
+: ["NativeGeometry"]["object"][<object>]
+
+-----------------------------------------------------------------------------
+--> Compiled relations internals.
+
+A compiled relation have 3 subkeys:
+
+["relations_compiled"][<id>]["type"] -- Relation type.
+["relations_compiled"][<id>]["value"] -- Relation value to get.
+["relations_compiled"][<id>]["conditional"] -- Relation execution condition. (The relation will not be effected if the condition is not true).
+
+Everybody know that doing a "do" is heavily slow compared to "value", from this constation,
+the NativeGeometry engine is not using at all a "do", but only value.
+
+This is how the engine works:
+- The conditional is applied and checked before everything.
+- If condition is ok, then the value is get.
+- The relation is buffered before beeing applied.
+- Finally, the final rect of the object is applied.
+
+
+This results in a impressive speed, making NativeGeometry as fast than writing your own scripts.
+
+-----------------------------------------------------------------------------
+--> Scale factor.
+
+New in version 3.0.
+
+NativeGeometry 3.0 introduce the scale factor concept. This allows user to scale up/down
+instantly their application.
+
+The last scale factor applied to a card is stored in the key:
+cNativeGeometryLastScale
+
+The format is in percent. 100 means 100%.
+
+The scale to apply is read from the NativeGeometry configuration. (ng_setConfig, property: scale)
+
+
+
+
+
+
+
+
+
+

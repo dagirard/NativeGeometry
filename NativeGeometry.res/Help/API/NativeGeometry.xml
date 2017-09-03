@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NativeSoft NativeDoc 1.0 XML Documentation file. -->
+<dpnd>
+  <info>
+    <ver>1.0</ver>
+  </info>
+  <date/>
+  <copyright>(c) 2007-2012 Damien Girard (NativeSoft), All Right Reserved Worldwide.</copyright>
+  <author>Damien Girard</author>
+  <project>NativeGeometry</project>
+  <company>NativeSoft</company>
+  <stack_NativeGeometry><file><name>NativeGeometry</name><type>file</type><begin>26</begin><tags><description>NativeGeometry is the most advanced geometry manager for LiveCode, by NativeSoft.&lt;br /&gt;
+&lt;br /&gt;
+NativeGeometry features:&lt;br /&gt;
+- Object oriented geometry setting API&lt;br /&gt;
+- Intelligent relation dependency solver&lt;br /&gt;
+- Geometry compilation compiler, for the fastest resizing experience&lt;br /&gt;
+- Object resizing engine, that allow you to create application that are:&lt;br /&gt;
+- - Cross platform&lt;br /&gt;
+- - Localizable&lt;br /&gt;
+- Scale engine that allow you to create application that are:&lt;br /&gt;
+- - DPI Aware&lt;br /&gt;
+- - More accessible&lt;br /&gt;
+- - Support all resolutions on mobile!&lt;br /&gt;
+- Conditional geometry relation&lt;br /&gt;
+&lt;br /&gt;
+The API specification has been grouped inside packages, in order to help any developper to find quickly the function/command that they need.&lt;br /&gt;
+&lt;br /&gt;
+Documented with NativeSoft &lt;a href="http://www.nativesoft.net/products/nativedoc"&gt;NativeDoc&lt;/a&gt;.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;How to implement NativeGeometry inside your application.&lt;/b&gt;&lt;br /&gt;
+Inside the Revolution enviroment, the NativeGeometry library is loaded automatically by the NativeGeometry Revolution plugins, but as a standalone you have to built-in NativeGeometry inside your main stack in order to have NativeGeometry workings.&lt;br /&gt;
+&lt;br /&gt;
+Place the following code inside your main stack (that is used to create the standalone):&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;on SavingStandalone&lt;br /&gt;
+ng_SavingStandalone&lt;br /&gt;
+end SavingStandalone&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+For your mobile application:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;on savingMobileStandalone&lt;br /&gt;
+ng_SavingStandalone&lt;br /&gt;
+save me -- Specified in android livecode note&lt;br /&gt;
+end savingMobileStandalone&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+And place the following code inside your application loader script:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;on startup&lt;br /&gt;
+-- Opening NativeGeometry&lt;br /&gt;
+open invisible stack (the ng_stack of me)&lt;br /&gt;
+&lt;br /&gt;
+-- On iOS, setting that the application has to use all pixel of the devices&lt;br /&gt;
+if the platform is &amp;quot;iphone&amp;quot; then iphoneUseDeviceResolution true, true&lt;br /&gt;
+&lt;br /&gt;
+-- Setting the scale value for this platform&lt;br /&gt;
+ng_setConfig &amp;quot;scale&amp;quot;, ng_getSystemScale()&lt;br /&gt;
+&lt;br /&gt;
+pass startup&lt;br /&gt;
+end startup&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+You can also place the following code in your preopenstack to have the best font on any platform:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;on preopenstack&lt;br /&gt;
+-- Setting the font for this platform.&lt;br /&gt;
+ng_setStackFont ng_getSystemFont(), (the name of this stack)&lt;br /&gt;
+&lt;br /&gt;
+pass preopenstack&lt;br /&gt;
+end preopenstack&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+That's all, the application is ready to be built using NativeGeometry.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Upgrading from NativeGeometry 2&lt;/b&gt;&lt;br /&gt;
+To upgrade your application to NativeGeometry 3, you have to copy the code above. (startup, preopenstack, savingMobileStandalone)&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Important note for people upgrading from NativeGeometry 2!&lt;/b&gt;&lt;br /&gt;
+NativeGeometry has now a scaling feature, this means that you don't have anymore to manually handle the font size change.&lt;br /&gt;
+&lt;br /&gt;
+So, if you were adapting manually the font size of your application, you have to remove this code and set the font and font size to the default font and fontsize of the platform. (eg. Segoe UI 12 on Windows Vista)&lt;br /&gt;
+&lt;br /&gt;
+Then, you will be able to scale all your text with NativeGeometry using the ng_setConfig command.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Downgrading to NativeGeometry 2&lt;/b&gt;&lt;br /&gt;
+&lt;span color="red"&gt;IMPORTANT:&lt;/span&gt; NativeGeometry 3 updated the internal database format.&lt;br /&gt;
+&lt;br /&gt;
+To downgrade your stack to be used on NativeGeometry 2, you have to download and install NativeGeometry 2.2 that handle the convertion of NativeGeometry 3 databases to 2.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Note:&lt;/b&gt; NativeGeometry 3 and NativeGeometry 2.2 automatically upgrade/downgrade the database format.</description><seealso_0>command_ng_setConfig,command_ng_Run,setprop_NativeGeometry,setprop_nGeometry,command_ng_setStackFont</seealso_0><warning_0>NativeGeometry 2 break API compability with NativeSpeak 1.0.</warning_0><note_0>The namespace of NativeGeometry is &amp;quot;ng_&amp;quot;</note_0><version_0>3.0</version_0><brief_0>NativeSoft NativeGeometry Library. The most advanced geometry manager for LiveCode.</brief_0><note_1>As Damien Girard is not a native english speaker, sometimes the documentation looks more Frenglish (French + English) than English. Do not hesitate to send your feedbacks at dgirard@nativesoft.fr</note_1><note_2>NativeGeometry 3.0 is API compliant with NativeGeometry 2.2.</note_2></tags></file><name>NativeGeometry</name><type>stack</type><package_651121121081059997116105111110326711110911210510897116105111110><name>Application Compilation</name><type>package</type><command_ng_SavingStandalone><type>command</type><isVariable>false</isVariable><begin>2507</begin><tags><description>This command will place the NativeGeometry library inside the custom property ng_stack of the compiled stack.&lt;br /&gt;
+In order to use NativeGeometry inside your application, this command MUST BE CALLED.</description><brief_0>Commands that must be called inside the &amp;quot;SavingStandalone&amp;quot; of your application.</brief_0></tags><end>2522</end><line>2498</line><name>ng_SavingStandalone</name><private>false</private><parameters></parameters><name_full>command ng_SavingStandalone </name_full></command_ng_SavingStandalone></package_651121121081059997116105111110326711110911210510897116105111110><package_6711111010210510311711497116105111110><name>Configuration</name><type>package</type><command_ng_init><type>command</type><isVariable>false</isVariable><begin>399</begin><tags><description></description><seealso_0>command_ng_SetConfig</seealso_0><note_0>Called automatically by the NativeGeometry libraryStack event.</note_0><brief_0>Inits the NativeGeometry library by setting all local variables to the current environment.</brief_0><note_1>This command will reset the configuration of NativeGeometry! You will have to re-set after all your configuration settings with ng_SetConfig</note_1><note_2>On unlicensed edition, a nagscreen will be poped out.</note_2></tags><end>490</end><line>384</line><name>ng_init</name><private>false</private><parameters></parameters><name_full>command ng_init </name_full></command_ng_init><command_ng_SetConfig><type>command</type><isVariable>false</isVariable><begin>526</begin><tags><description>&lt;b&gt;Available configuration properties:&lt;/b&gt;&lt;br /&gt;
+&lt;i&gt;-- Minimal button size&lt;/i&gt;&lt;br /&gt;
+- minbtnsize/width  -- Minimal button size width.&lt;br /&gt;
+- minbtnsize/height -- Minimal button size height.&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;-- Card padding properties.&lt;/i&gt;&lt;br /&gt;
+- padding/left   -- Card left padding.&lt;br /&gt;
+- padding/top    -- Card top padding.&lt;br /&gt;
+- padding/right  -- Card right padding.&lt;br /&gt;
+- padding/bottom -- Card bottom padding.&lt;br /&gt;
+- padding/rect   -- Card padding rect. (Set left/top/right/bottom automatically).&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;-- Button spacing property.&lt;/i&gt;&lt;br /&gt;
+- btnspace -- Space between buttons.&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;-- General scale.&lt;/i&gt;&lt;br /&gt;
+- scale -- General scale of NativeGeometry. Value 100 means 100%.</description><param_0>none pProperty
+Configuration property to set.</param_0><seealso_0>function_ng_GetConfig,command_ng_Init,function_ng_getSystemScale</seealso_0><throw_0>invalidproperty
+&amp;quot;The property pProperty is invalid&amp;quot;</throw_0><note_0>The value content is checked and an error is thrown if it is invalid.</note_0><brief_0>Sets the value of the NativeGeometry configuration property pProperty to pValue.</brief_0><param_1>none pValue
+Value of the configuration property to set.</param_1><throw_1>invalidvalue
+&amp;quot;The value pValue is invalid for the configuration property pProperty&amp;quot;</throw_1></tags><end>564</end><line>492</line><name>ng_SetConfig</name><private>false</private><parameters>pProperty,pValue</parameters><name_full>command ng_SetConfig pProperty, pValue</name_full></command_ng_SetConfig><function_ng_GetConfig><type>function</type><isVariable>false</isVariable><begin>593</begin><tags><description>&lt;b&gt;Available configuration properties:&lt;/b&gt;&lt;br /&gt;
+&lt;i&gt;-- Minimal button size&lt;/i&gt;&lt;br /&gt;
+- minbtnsize/width  -- Minimal button size width.&lt;br /&gt;
+- minbtnsize/height -- Minimal button size height.&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;-- Card padding properties.&lt;/i&gt;&lt;br /&gt;
+- padding/left   -- Card left padding.&lt;br /&gt;
+- padding/top    -- Card top padding.&lt;br /&gt;
+- padding/right  -- Card right padding.&lt;br /&gt;
+- padding/bottom -- Card bottom padding.&lt;br /&gt;
+- padding/rect   -- Card padding rect. (Set left/top/right/bottom automatically).&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;-- Button spacing property.&lt;/i&gt;&lt;br /&gt;
+- btnspace -- Space between buttons.</description><param_0>none pProperty
+Configuration property to get.</param_0><seealso_0>command_ng_SetConfig,command_ng_Init</seealso_0><throw_0>invalidproperty
+&amp;quot;The property pProperty is invalid&amp;quot;</throw_0><brief_0>Returns the value of the NativeGeometry configuration property pProperty.</brief_0></tags><end>604</end><line>566</line><name>ng_GetConfig</name><private>false</private><parameters>pProperty</parameters><name_full>function ng_GetConfig pProperty</name_full></function_ng_GetConfig></package_6711111010210510311711497116105111110><package_6897116979897115101><name>Database</name><type>package</type><command_ng_upgradeDatabase><type>command</type><isVariable>false</isVariable><begin>200</begin><tags><description>NativeDoc 3 introduced two new key:&lt;br /&gt;
+- database[&amp;quot;object&amp;quot;][&amp;quot;scale_mode&amp;quot;] (user modifiable)&lt;br /&gt;
+- database[&amp;quot;object&amp;quot;][&amp;quot;relation_compiled&amp;quot;][&amp;quot;dependencies&amp;quot;] (compiler key)&lt;br /&gt;
+&lt;br /&gt;
+NativeDoc 3 removed this key:&lt;br /&gt;
+- database[&amp;quot;object&amp;quot;][&amp;quot;order&amp;quot;]&lt;br /&gt;
+&lt;br /&gt;
+Because of the new dependency architecture, the order key was not used, instead the dependencies is used at runtime to compute dependencies.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;How to downgrade database to be used with NativeGeometry 2?&lt;/b&gt;&lt;br /&gt;
+NativeGeometry 2.2 added support to automatically downgrade NativeGeometry 3 databases. Simply update NativeGeometry to 2.2.</description><param_0>none pStack
+Stack to upgrade.</param_0><note_0>NativeGeometry 2.2 downgrade automatically NativeGeometry 3 databases.</note_0><warning_0>Once upgraded to the latest version, the compatibility with previous version of NativeGeometry can be broken.</warning_0><brief_0>Upgrade the NativeGeometry Database to the latest version.</brief_0></tags><end>221</end><line>200</line><name>ng_upgradeDatabase</name><private>false</private><parameters>pStack</parameters><name_full>command ng_upgradeDatabase pStack</name_full></command_ng_upgradeDatabase></package_6897116979897115101><package_69110103105110101><name>Engine</name><type>package</type><command_ng_Run><type>command</type><isVariable>false</isVariable><begin>640</begin><tags><description>This is the main command of NativeGeometry, the NativeGeometry Engine. This engine support enhanced cache and complex algorithm to makes the resizing operation the fastest as possible.&lt;br /&gt;
+&lt;br /&gt;
+NativeGeometry has also the &amp;quot;AutoSize&amp;quot; feature. This feature resizes objects that does not have their auto-size properties set to false to fit their best width/height depending the platform, the look and feel and their contents. Set [pAutoSize] to true to launch the auto-size engine with the geometry engine.&lt;br /&gt;
+&lt;b&gt;Note:&lt;/b&gt;Auto-size should be launched only at the opening of the stack, as it creates an overhead that slow down the resizing process.&lt;br /&gt;
+&lt;br /&gt;
+Since NativeGeometry 3.0, the &amp;quot;AutoSize&amp;quot; feature is able to scale up/down objects too.&lt;br /&gt;
+The scale value is read from the NativeGeometry configuration and is by default 100%.</description><throw_0>&amp;quot;invalid_object&amp;quot;
+pObject is not a card.</throw_0><version_0>3.0 Added the object scaling feature.</version_0><brief_0>Launches the NativeGeometry engine on the card pCard.</brief_0><param_0>none pCard
+Card that must be resized by NativeGeometry. (MUST CONTAINS THE STACK TOO. eg. card id 1004 of stack &amp;quot;toto&amp;quot;)</param_0><seealso_0>setprop_NativeGeometry,getprop_NativeGeometry,command_ng_SetConfig,command_ngp_engine_run</seealso_0><throw_1>&amp;quot;exists&amp;quot;
+pObject does not exists.</throw_1><version_1>3.0 New object dependency solver. Now the dependencies are treated by the runtime engine.</version_1><param_1>none [pAutoSize]
+Set to true and NativeGeometry will update the size of objects to fit to their best width/height depending on the platform and their content.</param_1></tags><end>721</end><line>611</line><name>ng_Run</name><private>false</private><parameters>pCard,pAutoSize</parameters><name_full>command ng_Run pCard, [pAutoSize]</name_full></command_ng_Run></package_69110103105110101><package_7011111011632117116105108105116105101115><name>Font utilities</name><type>package</type><command_ng_setStackFont><type>command</type><isVariable>false</isVariable><begin>2264</begin><tags><description>This command is really usefull in order to have a clean user interface on all plateform.&lt;br /&gt;
+&lt;br /&gt;
+Note: The textsize of objects is updated only if the current textsize of the object is &amp;lt; pMaxSize (13 if pMaxSize not defined). This enable you to keep big titles.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Example:&lt;/b&gt; ng_setStackFont ng_getSystemFont(), the long id of this stack&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Note about the scaling:&lt;/b&gt;&lt;br /&gt;
+NativeGeometry 3.0 handle object font scaling for NativeGeometry object.&lt;br /&gt;
+&lt;br /&gt;
+The command ng_setStackFont is handling the scaling, and will update object font accordingly to the current scalling defined for the stack.&lt;br /&gt;
+So, what this means? Simply that you don't have to care if the card is drawn in 100% or in 150%, this script is handling that for you.</description><param_0>none pNewFont
+New font to apply. Format: &amp;quot;&amp;lt;font&amp;gt;&amp;quot; &amp;lt;size&amp;gt; - eg. &amp;quot;Segoe UI&amp;quot; 10 or &amp;quot;Verdana&amp;quot; 15</param_0><seealso_0>function_ng_getSystemFont,command_ng_setConfig</seealso_0><version_0>3.0 Support of NativeGeometry font scaling.</version_0><warning_0>You must not try to adapt the font size according to the DPI of the screen. Put the size and then set the scale factor with ng_setConfig!</warning_0><brief_0>Updates the font and the size of all objects of the stack pStack.</brief_0><param_1>none pStack
+Stack to reset the objects font.</param_1><param_2>none [pMaxSize]
+Update the textsize only on object that have a textsize &amp;lt;= to this parameter. (Default: 14).</param_2></tags><end>2331</end><line>2235</line><name>ng_setStackFont</name><private>false</private><parameters>pNewFont,pStack,pMaxSize</parameters><name_full>command ng_setStackFont pNewFont, pStack, [pMaxSize]</name_full></command_ng_setStackFont><function_ng_getSystemFont><type>function</type><isVariable>false</isVariable><begin>2357</begin><tags><description>On MacOS X this function returns &amp;quot;Lucida Grande 13&amp;quot;.&lt;br /&gt;
+On Windows, this depends the system version.&lt;br /&gt;
+&lt;br /&gt;
+On iOS &amp;lt; 4, the font is Helvetica 14, on iOS &amp;gt;= 4, the font is Helvetica Neue 14.&lt;br /&gt;
+On Android, the font is &amp;quot;Droid Sans&amp;quot; 14.&lt;br /&gt;
+&lt;br /&gt;
+This function on linux will try to read the system font with the command:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;$ gconftool-2 --get /desktop/gnome/interface/font_name&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+If the font cannot be retrieved then &amp;quot;Lucida 10&amp;quot; is returned.</description><seealso_0>command_ng_setStackFont</seealso_0><version_0>3.0 Removed DPI calculation on Linux. It is ng_getSystemScale that return this value now.</version_0><return_0>The system font. Format: &amp;quot;&amp;lt;font&amp;gt;&amp;quot; &amp;lt;size&amp;gt; - eg. &amp;quot;Segoe UI&amp;quot; 10 or &amp;quot;Verdana&amp;quot; 11</return_0><brief_0>Returns the system font to use in your application.</brief_0><version_1>3.0 Added mobile platform.</version_1></tags><end>2396</end><line>2333</line><name>ng_getSystemFont</name><private>false</private><parameters></parameters><name_full>function ng_getSystemFont </name_full></function_ng_getSystemFont><function_ng_getSystemScale><type>function</type><isVariable>false</isVariable><begin>2438</begin><tags><description>Use this function with the ng_setConfig command.&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;ng_setConfig &amp;quot;scale&amp;quot;, ng_getSystemScale()&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+Normally the font scale setting is set at the startup of the application in the &amp;quot;on startup&amp;quot; handler.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;How system DPI setting is read ?&lt;/b&gt;&lt;br /&gt;
+On windows &amp;gt; Vista, the following key is read:&lt;br /&gt;
+&lt;pre&gt;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontDPI\LogPixels&lt;/pre&gt;&lt;br /&gt;
+If a problem is met with this registry key, the VBScript is then executed.&lt;br /&gt;
+&lt;br /&gt;
+On Windows XP, the following VBScript is executed:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;Set objWMIService = GetObject(&amp;quot;winmgmts:\\.\root\cimv2&amp;quot;)&lt;br /&gt;
+Set colItems = objWMIService.ExecQuery(&amp;quot;Select LogPixels from Win32_DisplayConfiguration&amp;quot;,,48)&lt;br /&gt;
+For Each objItem in colItems&lt;br /&gt;
+Set result = objItem.LogPixels&lt;br /&gt;
+Next&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+On Linux, as Revolution follow the Xorg DPI and not the Gnome DPI, the font size have to be converted in order to look good in Revolution, so the gnome screen dpi is read with the command:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;$ gconftool-2 --get /desktop/gnome/font_rendering/dpi&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+And the xorg dpi with:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;$ xdpyinfo | grep &amp;quot;resolution&amp;quot;&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+Then the scale is calculated:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;round(100 * (gnome dpi/xorg dpi))&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+On MacOS, no system scale is needed, if you want to scale your application, you have to set it manually. (This function returns ever 100)&lt;br /&gt;
+&lt;br /&gt;
+On iOS and Android, the mobilePixelDensity function is used.</description><version_0>3.0</version_0><return_0>The system font scale to use. Value 100 means 100% (no scale), 80 means 20% of downscale and 120 means 20% of upscale.</return_0><brief_0>Returns the system font scale to use.</brief_0></tags><end>2492</end><line>2398</line><name>ng_getSystemScale</name><private>false</private><parameters></parameters><name_full>function ng_getSystemScale </name_full></function_ng_getSystemScale></package_7011111011632117116105108105116105101115><package_7110111110910111611412132779711097103101109101110116><name>Geometry Management</name><type>package</type><getprop_NativeGeometry><line>1669</line><name>NativeGeometry</name><isVariable>false</isVariable><type>getprop</type><private>false</private><begin>1697</begin><tags><description>Use this property to get the NativeGeometry of an object.&lt;br /&gt;
+&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;NativeGeometryArray format:&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;enabled&amp;quot;]        -&amp;gt; Does the object should be resized.&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;relations&amp;quot;]      -&amp;gt; NativeGeometry geometry relations. (See setProp NativeGeometry for more informations).&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;no_auto_resize&amp;quot;] -&amp;gt; Disable the &amp;quot;Auto-resize&amp;quot; feature of NativeGeometry for this object.&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;scale_mode&amp;quot;]     -&amp;gt; Scaling mode for this object.&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;min_width&amp;quot;]      -&amp;gt; Minimal width of the object. This property is more important that any other properties!&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;max_width&amp;quot;]      -&amp;gt; Maximal width of the object. This property is more important that any other properties!&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;min_height&amp;quot;]     -&amp;gt; Minimal height of the object. This property is more important that any other properties!&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;max_height&amp;quot;]     -&amp;gt; Maximal height of the object. This property is more important that any other properties!&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;b&gt;&lt;u&gt;NativeGeometry Relations&lt;/u&gt;&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+See the NativeGeometry setprop documentation to learn how to work with the NativeGeometryArray.</description><author_0>Damien Girard</author_0><seealso_0>getprop_nGeometry,setprop_NativeGeometry</seealso_0><return_0>Returns the NativeGeometry array of the object. If the object is not inside the NativeGeometry, nothing is returned.</return_0><brief_0>Gets the geometry of the object. Usage: put the NativeGeometry of btn &amp;quot;myButton&amp;quot; into NativeGeometryArray.</brief_0></tags><end>1749</end><name_full>getprop NativeGeometry </name_full></getprop_NativeGeometry><getprop_nGeometry><line>1298</line><name>nGeometry</name><isVariable>false</isVariable><type>getprop</type><private>false</private><begin>1312</begin><tags><description>The code of this alias is simply:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;getProp nGeometry&lt;br /&gt;
+put the NativeGeometry of the target into tArray&lt;br /&gt;
+return tArray[&amp;quot;relations&amp;quot;]&lt;br /&gt;
+end nGeometry&lt;/code&gt;&lt;/div&gt;</description><seealso_0>setprop_nGeometry,setprop_NativeGeometry,getprop_NativeGeometry</seealso_0><brief_0>Alias to get faster NativeGeometry geometry relations.</brief_0></tags><end>1315</end><name_full>getprop nGeometry </name_full></getprop_nGeometry><setprop_NativeGeometry><line>1317</line><name>NativeGeometry</name><isVariable>false</isVariable><type>setprop</type><private>false</private><begin>1479</begin><tags><description>Use this property to set the NativeGeometry of an object.&lt;br /&gt;
+&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;NativeGeometryArray format:&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;enabled&amp;quot;]        -&amp;gt; Does the object should be resized.&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;relations&amp;quot;]      -&amp;gt; NativeGeometry geometry relations. (See later to see how NativeGeometry relations are made).&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;no_auto_resize&amp;quot;] -&amp;gt; Disable the &amp;quot;Auto-resize&amp;quot; feature of NativeGeometry for this object.&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;scale_mode&amp;quot;]     -&amp;gt; Scaling mode for this object. Can be &amp;quot;font&amp;quot;, &amp;quot;object&amp;quot; or &amp;quot;no&amp;quot;.&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;min_width&amp;quot;]      -&amp;gt; Minimal width of the object. This property is more important that any other properties!&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;max_width&amp;quot;]      -&amp;gt; Maximal width of the object. This property is more important that any other properties!&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;min_height&amp;quot;]     -&amp;gt; Minimal height of the object. This property is more important that any other properties!&lt;br /&gt;
+- NativeGeometryArray[&amp;quot;max_height&amp;quot;]     -&amp;gt; Maximal height of the object. This property is more important that any other properties!&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;b&gt;&lt;u&gt;NativeGeometry Relations&lt;/u&gt;&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+NativeGeometry Geometry relations has been made to be easily understandable by human, this is possible because NativeGeometry has a geometry &amp;quot;compiler&amp;quot; that manage for you all things like geometry resizing order and speed up everything to makes to your users the best experiences using your application.&lt;br /&gt;
+&lt;br /&gt;
+This section will explain you how to write manually NativeGeometry Relations to be used with NativeGeometry.&lt;br /&gt;
+&lt;i&gt;Note:&lt;/i&gt; By the way, it is recommanded to use the NativeGeometry Revolution Plugins to manage geometry relations.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b style="color: red;"&gt;THE FIRST THINGS THAT YOU MUST KNOW, IS THAT YOU MUST REDUCE TO THE MAXIMUM THE SPEED EXECUTION OF ANY FUNCTIONS THAT WOULD BE CALLED INSIDE A GEOMETRY RELATIONS.&lt;/b&gt;&lt;br /&gt;
+It is because NativeGeometry engine will be called more than hundred of times during a resizing operation, and to have a smooth resizing, nothing should slow down the process. So if you call function that you writed inside NativeGeometry relations make sure that they will be executed as fast as possible to prevent any problems.&lt;br /&gt;
+&lt;br /&gt;
+Because, a great liberty means great responsability.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;So how does NativeGeometryArray[&amp;quot;relations&amp;quot;] has to be written ?&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+-&amp;gt; Well, it is almost like a classic revolution geometry scripts. But it reduces the amount of things to be written.&lt;br /&gt;
+&lt;br /&gt;
+You can use the following keywords: &lt;b&gt;&amp;quot;me&amp;quot; and &amp;quot;this&amp;quot;&lt;/b&gt;. (Things not doable inside a resizestack script).&lt;br /&gt;
+&lt;br /&gt;
+Example of NativeGeometryArray[&amp;quot;relations&amp;quot;]:&lt;br /&gt;
+- &lt;u&gt;I want to set me (I am a button) to the bottom right of this card.&lt;/u&gt;&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;set the right of me to the right of this card&lt;br /&gt;
+set the bottom of me to the bottom of this card&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+So, inside the multi-line message box, to set this script do that:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;put &amp;quot;set the right of me to the right of this card;set the bottom of me to the bottom of this card&amp;quot; into tArray[&amp;quot;relations&amp;quot;]&lt;br /&gt;
+set the NativeGeometry of btn &amp;quot;myButton&amp;quot; to tArray&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;b&gt;Note:&lt;/b&gt; When you update NativeGeometry properties, &lt;u&gt;only the field updated will be updated&lt;/u&gt;. Fields with no value &lt;u&gt;will not be reverted to default&lt;/u&gt; in the case where you only want to update geometry relations.&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Now, going a bit deeper inside NativeGeometry relations:&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+- &lt;u&gt;I want to set me (I am still a button) to the bottom of this card, &lt;b&gt;BUT&lt;/b&gt; I want to have a space that is dependant of the platform! and I want that too for my right!&lt;/u&gt;&lt;br /&gt;
+&lt;br /&gt;
+NativeGeometry includes the &lt;b&gt;&amp;quot;padding&amp;quot; concept&lt;/b&gt;, the padding &lt;b&gt;is a virtual rect&lt;/b&gt; located inside card and that is &lt;b&gt;dependant of the platform look and feel!&lt;/b&gt;&lt;br /&gt;
+This is perfect to design cross-platform applications without having to update everything for each platform.&lt;br /&gt;
+&lt;br /&gt;
+Properties added by NativeGeometry are those ones (&lt;span style="color=red;"&gt;Note: usable only inside NativeGeometry relations!&lt;/span&gt;):&lt;br /&gt;
+- &lt;b&gt;&amp;lt;leftPadding&amp;gt;&lt;/b&gt;   -&amp;gt; The left padding, to set the left of an object.&lt;br /&gt;
+- &lt;b&gt;&amp;lt;topPadding&amp;gt;&lt;/b&gt;    -&amp;gt; The top padding, to set the top of an object.&lt;br /&gt;
+- &lt;b&gt;&amp;lt;rightPadding&amp;gt;&lt;/b&gt;  -&amp;gt; The right padding, to set the right of an object.&lt;br /&gt;
+- &lt;b&gt;&amp;lt;bottomPadding&amp;gt;&lt;/b&gt; -&amp;gt; The bottom padding, to set the bottom of an object.&lt;br /&gt;
+&lt;br /&gt;
+This makes this geometry relation:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;set the right of me to the rightPadding of this card&lt;br /&gt;
+set the bottom of me to the bottomPadding of this card&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+So, inside the multi-line message box, to set this script do that:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;put &amp;quot;set the right of me to the rightPadding of this card;set the bottom of me to the bottomPadding of this card&amp;quot; into tArray[&amp;quot;relations&amp;quot;]&lt;br /&gt;
+set the NativeGeometry of btn &amp;quot;myButton&amp;quot; to tArray&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;b&gt;Going to the perfect cross-platform GUI&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+- &lt;u&gt;I want to set two buttons at the bottom right of my card, and those two buttons must have a &lt;b&gt;space between them that is dependant of the platform look and feel!&lt;/b&gt;&lt;/u&gt;&lt;br /&gt;
+&lt;br /&gt;
+To get the &lt;b&gt;space that must be used between two buttons&lt;/b&gt;, there is &lt;b&gt;Padding properties!&lt;/b&gt;.&lt;br /&gt;
+- &lt;b&gt;&amp;lt;leftPadding&amp;gt;&lt;/b&gt;   -&amp;gt; The left padding, to set the right of an object.&lt;br /&gt;
+- &lt;b&gt;&amp;lt;topPadding&amp;gt;&lt;/b&gt;    -&amp;gt; The top padding, to set the bottom of an object.&lt;br /&gt;
+- &lt;b&gt;&amp;lt;rightPadding&amp;gt;&lt;/b&gt;  -&amp;gt; The right padding, to set the left of an object.&lt;br /&gt;
+- &lt;b&gt;&amp;lt;bottomPadding&amp;gt;&lt;/b&gt; -&amp;gt; The bottom padding, to set the top of an object.&lt;br /&gt;
+&lt;br /&gt;
+For the first object, use this geometry relation:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;set the right of me to the rightPadding of this card&lt;br /&gt;
+set the bottom of me to the bottomPadding of this card&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+And for the second object, use this geometry relation:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;set the right of me to the leftPadding of btn &amp;quot;myButton&amp;quot;&lt;br /&gt;
+set the bottom of me to the bottomPadding of this card&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+When you look at those two scripts, you see that NativeGeometry will place the &lt;u&gt;first object to the bottom right of the card&lt;/u&gt;, and the second object will be placed to the &lt;u&gt;bottom of the card and to the left of the first button, by adding a little space between them that is cross-platform!&lt;/u&gt;&lt;br /&gt;
+&lt;br /&gt;
+So, inside the multi-line message box, to set thoses scripts do that:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;put &amp;quot;set the right of me to the rightPadding of this card;set the bottom of me to the bottomPadding of this card&amp;quot; into tArray[&amp;quot;relations&amp;quot;]&lt;br /&gt;
+set the NativeGeometry of btn &amp;quot;myButton&amp;quot; to tArray&lt;br /&gt;
+put &amp;quot;set the right of me to the leftPadding of btn 'myButton'&amp;quot;; set the bottom of me to the bottomPadding of this card&amp;quot; into tArray[&amp;quot;relations&amp;quot;]&lt;br /&gt;
+set the NativeGeometry of btn &amp;quot;myButton2&amp;quot; to tArray&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;b&gt;The perfect cross platform GUI&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+In order to have a perfect GUI on all platform, NativeGeometry &lt;b&gt;added &amp;quot;Conditional&amp;quot; geometry relations!&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+This means that &lt;b&gt;depending one or more conditions&lt;/b&gt;, a &lt;b&gt;relation will be executed or not&lt;/b&gt;.&lt;br /&gt;
+&lt;br /&gt;
+- &lt;u&gt;On MacOS X, me (I am a button) I am at the top of the screen, on Windows Vista/Seven, I am on the middle of the screen, on Linux (GTK), I am on the bottom of the screen.&lt;/u&gt;&lt;br /&gt;
+&lt;br /&gt;
+To get the current GUI in use, NativeGeometry has an internal variable called &lt;b&gt;&amp;quot;sLookAndFeel&amp;quot;&lt;/b&gt;, the value of this variable can be:&lt;br /&gt;
+- &lt;b&gt;aero&lt;/b&gt;  The GUI in use is Windows Vista/7 and later...&lt;br /&gt;
+- &lt;b&gt;winxp&lt;/b&gt; The GUI in use is Windows XP.&lt;br /&gt;
+- &lt;b&gt;win95&lt;/b&gt; The GUI in use is the emulated Windows 95 GUI.&lt;br /&gt;
+- &lt;b&gt;osX&lt;/b&gt;   The GUI in use is MacOS X.&lt;br /&gt;
+- &lt;b&gt;mac&lt;/b&gt;   The GUI in use is the emulated MacOS Classic GUI.&lt;br /&gt;
+- &lt;b&gt;gtk&lt;/b&gt;   The GUI in use is Linux GTK+.&lt;br /&gt;
+- &lt;b&gt;motif&lt;/b&gt; The GUI in use is the emulated Motif GUI.&lt;br /&gt;
+&lt;br /&gt;
+Also, NativeGeometry &lt;b&gt;allows the use of &amp;quot;if/then/else/else if&amp;quot; !!!!&lt;/b&gt;.&lt;br /&gt;
+&lt;br /&gt;
+This makes this geometry relation:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;if sLookAndFeel is among the words of &amp;quot;mac osX&amp;quot; then&lt;br /&gt;
+set the top of me to the topPadding of this card&lt;br /&gt;
+else if sLookAndFeel is among the words of &amp;quot;aero winxp win95&amp;quot; then&lt;br /&gt;
+set the top of me to the height of this card /2 - the height of me /2&lt;br /&gt;
+else if sLookAndFeel is &amp;quot;gtk motif&amp;quot; then&lt;br /&gt;
+set the bottom of me to the bottomPadding of this card&lt;br /&gt;
+end if&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;b&gt;Note:&lt;/b&gt; What you must remember, is that NativeGeometry &lt;b&gt;has a &lt;u&gt;compiler&lt;/u&gt;&lt;/b&gt; that will &lt;b&gt;optimize&lt;/b&gt; all what you write.&lt;br /&gt;
+&lt;br /&gt;
+So, inside the multi-line message box, to set this script do that:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;put &amp;quot;if sLookAndFeel is among the words of 'mac osX' then;set the top of me to the topPadding of this card;&amp;quot;&amp;amp; &amp;amp;#92;&lt;br /&gt;
+&amp;quot;else if sLookAndFeel is among the words of 'aero winxp win95' then;set the top of me to the height of this card /2 - the height of me /2;&amp;quot;&amp;amp; &amp;amp;#92;&lt;br /&gt;
+&amp;quot;else if sLookAndFeel is among the words of 'gtk motif' then;set the bottom of me to the bottomPadding of this card;end if&amp;quot; into tArray[&amp;quot;relations&amp;quot;]&lt;br /&gt;
+set the NativeGeometry of btn &amp;quot;myButton&amp;quot; to tArray&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;b&gt;The property &amp;quot;scale_mode&amp;quot;&lt;/b&gt;&lt;br /&gt;
+NativeGeometry 3 introduced the scale method property. This property can have 3 values:&lt;br /&gt;
+- &lt;b&gt;font&lt;/b&gt;   Font scaling means that the font of the object will be scaled up/down. (Default)&lt;br /&gt;
+- &lt;b&gt;object&lt;/b&gt; Object scaling means that the font AND the object will be scaled up/down.&lt;br /&gt;
+- &lt;b&gt;no&lt;/b&gt;     Disable scaling on the object.&lt;br /&gt;
+&lt;br /&gt;
+Setting &amp;quot;scale_mode&amp;quot; to &amp;quot;object&amp;quot; will make NativeGeometry scale up/down the font and the object. This is perfect for mobile development.&lt;br /&gt;
+This scale method circumvent the automatic content adptation of NativeGeometry. (called previously &amp;quot;automatic resize&amp;quot;)&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;The last word&lt;/b&gt;&lt;br /&gt;
+This documentation detailed you how to write NativeGeometry relations, remember that the &lt;b&gt;NativeGeometry compiler is here&lt;/b&gt; and will analyzes all your geometry relations in order to discover the best and fatest geometry resizing.&lt;br /&gt;
+&lt;br /&gt;
+And it is &lt;b&gt;recommanded to use&lt;/b&gt; the &lt;b&gt;NativeGeometry Revolution Plugins&lt;/b&gt;, to create NativeGeometry geometry relations at the speed of the though ;)</description><author_0>Damien Girard</author_0><seealso_0>setprop_nGeometry</seealso_0><throw_0>&amp;quot;invalidrelation&amp;quot;
+The geometry relation is invalid. The first line explain the problem, the second line of the throw error is the line that made the problem.</throw_0><brief_0>Sets the geometry of the object to the value. Usage: set the NativeGeometry of btn &amp;quot;myButton&amp;quot; to NativeGeometryArray.</brief_0></tags><end>1666</end><name_full>setprop NativeGeometry </name_full></setprop_NativeGeometry><setprop_nGeometry><line>1279</line><name>nGeometry</name><isVariable>false</isVariable><type>setprop</type><private>false</private><begin>1293</begin><tags><description>The code of this alias is simply:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;setProp nGeometry pRelation&lt;br /&gt;
+put pRelation into tArray[&amp;quot;relations&amp;quot;]&lt;br /&gt;
+set the NativeGeometry of the target to tArray&lt;br /&gt;
+end nGeometry&lt;/code&gt;&lt;/div&gt;</description><seealso_0>getprop_nGeometry,setprop_NativeGeometry,getprop_NativeGeometry</seealso_0><brief_0>Alias to set faster NativeGeometry geometry relations. Usage: set the nGeometry of btn &amp;quot;myButton&amp;quot; to &amp;quot;set the left of me to the right of btn id 1044;set the top of me to the toppadding of this card&amp;quot;</brief_0></tags><end>1296</end><name_full>setprop nGeometry </name_full></setprop_nGeometry></package_7110111110910111611412132779711097103101109101110116><package_76111103><type>package</type><name>Log</name><command_ng_logClear><type>command</type><isVariable>false</isVariable><begin>2150</begin><tags><description></description><seealso_0>local_sLog,command_ng_logAdd,function_ng_logGet</seealso_0><brief_0>Clears the NativeGeometry log file.</brief_0></tags><end>2152</end><line>2142</line><name>ng_logClear</name><private>false</private><parameters></parameters><name_full>command ng_logClear </name_full></command_ng_logClear><command_ng_logDeleteCallback><type>command</type><isVariable>false</isVariable><begin>2204</begin><tags><description></description><param_0>none pCallbackID
+ID of the callback to remove.</param_0><seealso_0>function_ng_logAddCallback,function_ng_logGetCallbackList,command_ng_LogAdd,function_ng_logGet,local_sLogCallback</seealso_0><note_0>To get the id of the callback to delete, you can use the value returned by the ng_logAddCallback() function, or use ng_logGetCallbackList()</note_0><brief_0>Delete a command to be called back when a log entry is added.</brief_0></tags><end>2208</end><line>2192</line><name>ng_logDeleteCallback</name><private>false</private><parameters>pCallbackID</parameters><name_full>command ng_logDeleteCallback pCallbackID</name_full></command_ng_logDeleteCallback><function_ng_logAddCallback><type>function</type><isVariable>false</isVariable><begin>2179</begin><tags><description>The signature of the callback command is the following:&lt;br /&gt;
+on myCallback pErrorLevel, pMessage&lt;br /&gt;
+replace &amp;quot;\n&amp;quot; with cr in pMessage&lt;br /&gt;
+replace &amp;quot;&amp;amp;commas;&amp;quot; with &amp;quot;,&amp;quot; in pMessage&lt;br /&gt;
+... Do what you have to do ...&lt;br /&gt;
+end myCallback</description><param_0>none pCallbackName
+Name of the command to call.</param_0><seealso_0>command_ng_logDeleteCallback,function_ng_logGetCallbackList,command_ng_LogAdd,function_ng_logGet,local_sLogCallback</seealso_0><warning_0>Callbacks are not checked!</warning_0><note_0>The call of the callback is asynchronous (sended in time) in order to not block NativeGeometry.</note_0><return_0>The id of the callback in the callback list.</return_0><brief_0>Add a command to be called back when a log entry is added.</brief_0><param_1>none pLocation
+Long id of the script that contains the callback command pCallbackName.</param_1><note_1>Also, callbacks are called inside a try handler, and no error are reported in order to not block Revolution while a resizing operation.</note_1></tags><end>2190</end><line>2154</line><name>ng_logAddCallback</name><private>false</private><parameters>pCallbackName,pLocation</parameters><name_full>function ng_logAddCallback pCallbackName, pLocation</name_full></function_ng_logAddCallback><function_ng_logGet><type>function</type><isVariable>false</isVariable><begin>2136</begin><tags><description></description><seealso_0>local_sLog,command_ng_logAdd,command_ng_logClear</seealso_0><note_0>Line returns inside each log entry was converted to &amp;quot;\n&amp;quot; and place on a single line. To display an error line on multiple line, use: &amp;quot;replace &amp;quot;\n&amp;quot; with cr&amp;quot; in ...</note_0><brief_0>Returns the NativeGeometry log file.</brief_0></tags><end>2140</end><line>2126</line><name>ng_logGet</name><private>false</private><parameters></parameters><name_full>function ng_logGet </name_full></function_ng_logGet><function_ng_logGetCallbackList><type>function</type><isVariable>false</isVariable><begin>2220</begin><tags><description></description><seealso_0>function_ng_logAddCallback,command_ng_logDeleteCallback,command_ng_LogAdd,function_ng_logGet,local_sLogCallback</seealso_0><return_0>One callback by line, format: &amp;lt;the callback id&amp;gt;,&amp;lt;the callback name&amp;gt;,&amp;lt;the location of the callback&amp;gt;.</return_0><brief_0>Returns the list of command to be called back when a log entry is added.</brief_0></tags><end>2228</end><line>2210</line><name>ng_logGetCallbackList</name><private>false</private><parameters></parameters><name_full>function ng_logGetCallbackList </name_full></function_ng_logGetCallbackList></package_76111103><package_85116105108105116105101115><name>Utilities</name><type>package</type><getprop_ng_FormattedHeight><line>1987</line><name>ng_FormattedHeight</name><isVariable>false</isVariable><type>getprop</type><private>false</private><begin>1998</begin><tags><description>This properties calculate the best size of each lines, and then addition it in order to obtains the best formattedheight value.</description><note_0>On other objects than field, the classic formattedheight is returned.</note_0><return_0>The good field formattedheight.</return_0><brief_0>This property is an override of the Revolution formattedHeight for fields, that is ever incorrect.</brief_0></tags><end>2035</end><name_full>getprop ng_FormattedHeight </name_full></getprop_ng_FormattedHeight><function_ng_GetObjectName><type>function</type><isVariable>false</isVariable><begin>1920</begin><tags><description>You must use this function before any call of a NativeGeometry command/function in order to obtain the expected result.</description><param_0>none pObject
+Object name to analyze.</param_0><error_0>&amp;quot;exists&amp;quot;
+The object does not exists. (Set &amp;lt;pNotGetLongID&amp;gt; to true to not read the long id of the object).</error_0><return_0>The NativeGeometry object name of the object.</return_0><brief_0>Returns a NativeGeometry object name for an object.</brief_0><param_1>none [pParameter]
+Set in this parameter the wanted result, use &amp;quot;+&amp;quot; as separator (Set this parameters to empty returns the object ID and the stack name (&amp;quot;object+card+stack&amp;quot;)).Example: &amp;quot;card&amp;quot;, &amp;quot;stack&amp;quot;, &amp;quot;card+stack&amp;quot;, &amp;quot;object+card+stack&amp;quot;, &amp;quot;object+stack&amp;quot; </param_1><param_2>none [pNotGetLongID]
+Set this parameters to true and this function will not read the long id of the object. (The object can not exists)</param_2><param_3>none [pUseSingleQuote]
+Use simple quote instead of double quote. Useful for Arrays.</param_3></tags><end>1985</end><line>1903</line><name>ng_GetObjectName</name><private>false</private><parameters>pObject,pParameter,pNotGetLongID,pUseSingleQuote</parameters><name_full>function ng_GetObjectName pObject, [pParameter], [pNotGetLongID], [pUseSingleQuote]</name_full></function_ng_GetObjectName></package_85116105108105116105101115><command_libraryStack><type>on</type><isVariable>false</isVariable><begin>275</begin><tags><description>Call the ng_init command of the NativeGeometry Library.</description><seealso_0>command_ng_init</seealso_0><brief_0>Inits NativeGeometry library.</brief_0></tags><end>278</end><line>267</line><name>libraryStack</name><private>false</private><parameters></parameters><name_full>on libraryStack </name_full></command_libraryStack><command_preOpenCard><type>on</type><isVariable>false</isVariable><begin>298</begin><tags><description>If you want to do operations before the execution of NativeGeometry, simply put &amp;quot;pass preopencard&amp;quot; at the end of your preopencard handler.&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;on preopencard&lt;br /&gt;
+... do operations ...&lt;br /&gt;
+pass preopencard&lt;br /&gt;
+end preopencard&lt;/code&gt;&lt;/div&gt;&lt;br /&gt;
+If you want to manually launch NativeGeometry, do not pass the preopencard handler and call directly NativeGeometry.&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;ng_Run (the long id of this card), true&lt;/code&gt;&lt;/div&gt;</description><seealso_0>command_ng_Run</seealso_0><brief_0>Launches NativeGeometry before the card to be displayed.</brief_0></tags><end>300</end><line>281</line><name>preOpenCard</name><private>false</private><parameters></parameters><name_full>on preOpenCard </name_full></command_preOpenCard><command_preopenstack><type>on</type><isVariable>false</isVariable><begin>261</begin><tags><description>Sets NativeGeometry as library stack.</description><brief_0>Init of the NativeGeometry library. Must be called in order to have NativeGeometry working.</brief_0></tags><end>265</end><line>255</line><name>preopenstack</name><private>false</private><parameters></parameters><name_full>on preopenstack </name_full></command_preopenstack><command_resizeStack><type>on</type><isVariable>false</isVariable><begin>317</begin><tags><description>If you want to control exactly when NativeGeometry is launched, do not pass the &amp;quot;resizeStack&amp;quot; hander and call manually NativeGeometry.&lt;br /&gt;
+Example:&lt;br /&gt;
+&lt;div class="code"&gt;&lt;code&gt;on resizeStack&lt;br /&gt;
+-- Do what you have to do here --&lt;br /&gt;
+ng_Run (the long ID of this card), false -- Call NativeGeometry&lt;br /&gt;
+-- Do what you have to do here --&lt;br /&gt;
+end resizeStack -- resizeStack is not passed.&lt;/code&gt;&lt;/div&gt;</description><note_0>If you want NativeGeometry to be automatically launched, simply pass your resizeStack handlers. &amp;quot;pass resizeStack&amp;quot;</note_0><brief_0>Launches NativeGeometry of the resized stack.</brief_0></tags><end>321</end><line>302</line><name>resizeStack</name><private>false</private><parameters></parameters><name_full>on resizeStack </name_full></command_resizeStack><function_ng_ver><type>function</type><isVariable>false</isVariable><begin>138</begin><tags><description></description><param_0>none [pShort]
+If set to true, only the major version is returned. (eg. 1.0 instead of 1.0.0.0)</param_0><return_0>Version of NativeGeometry.</return_0><brief_0>Returns the version of NativeGeometry.</brief_0></tags><end>141</end><line>130</line><name>ng_ver</name><private>false</private><parameters>pShort</parameters><name_full>function ng_ver [pShort]</name_full></function_ng_ver></stack_NativeGeometry>
+  <properties><date>9:33 PM 12/5/12</date><copyright>(c) 2007-2012 Damien Girard (NativeSoft), All Right Reserved Worldwide.</copyright><author>Damien Girard</author><project>NativeGeometry</project><company>NativeSoft</company></properties>
+</dpnd>

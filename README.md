@@ -53,3 +53,5 @@ GitHub page: https://github.com/dagirard/NativeDoc
 
 NativeGeometry is under the MIT license.
 A complete copy is available in the file LICENSE.TXT
+
+NativeSoft, DataTree, NativeDoc, NativeGeometry, the NativeSoft logo, the DataTree logo, the NativeGeometry logo, the NativeDoc logo, NativeSpeak, are registered trademarks of Damien André Edouard Girard, registered in France and other countries.
